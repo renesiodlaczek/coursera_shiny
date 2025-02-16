@@ -1,0 +1,12 @@
+name: coursera_shiny
+title: coursera_shiny
+username: 08z6d9-ren0siodlaczek
+account: 08z6d9-ren0siodlaczek
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14013081
+bundleId: 9808069
+url: https://08z6d9-ren0siodlaczek.shinyapps.io/coursera_shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
