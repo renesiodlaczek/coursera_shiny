@@ -6,6 +6,5 @@ The following two links guide to the final submissions.
 
 Shiny Application: https://08z6d9-ren0siodlaczek.shinyapps.io/coursera_shiny/
 
-Reproducible Pitch Presentation: tbd
-
+Reproducible Pitch Presentation: https://renesiodlaczek.github.io/coursera_shiny
 
