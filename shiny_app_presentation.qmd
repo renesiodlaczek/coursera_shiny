@@ -3,6 +3,7 @@ title: "How does a Decision Tree work?"
 format: 
     revealjs:
         embed-resources: true
+        theme: beige
 editor: visual
 author: René Siodlaczek
 date: February 17, 2025
