@@ -1,5 +1,5 @@
 ---
-title: "shiny_app_presentation"
+title: "How does a Decision Tree work?"
 format: 
     revealjs:
         embed-resources: true
@@ -8,21 +8,69 @@ author: René Siodlaczek
 date: February 17, 2025
 ---
 
-## Quarto
+## About
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+### Goal
 
-## Bullets
+The app aims to support learning how the decision tree classification algorithm works.
 
-When you click the **Render** button a document will be generated that includes:
+### How it works
 
--   Content authored with markdown
--   Output from executable code
+-   In the app the user can train a decision tree classifier with different hyperparameters.
 
-## Code
+-   The user sees a visual representation of the fitted decision tree.
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+-   The decision tree can be used to make predictions.
+
+## Data
+
+The underlying dataset is called 'Palmer Archipelago (Antarctica) Penguin Data'. It contains features from different penguins observed in the Palmer Archipelago near Palmer Station, Antarctica.
 
 ```{r}
-1 + 1
+library(palmerpenguins)
+library(DT)
+
+DT::datatable(penguins)
+```
+
+## Training
+
+After the users selected the algorithm's hyperparameter and clicked on "Train decision tree" the algorithms tries to find the best decision tree to predict a penguin's species.
+
+Once the training is complete a visual decision tree appears:
+
+```{r}
+library(rpart)
+library(rpart.plot)
+
+penguins$year <- as.factor(penguins$year)
+
+model <- rpart::rpart(species ~ .,
+                     data = penguins,
+                     na.action = na.rpart,
+                     method = "class",
+                     parms = list(split = "gini"),
+                     minsplit = 10,
+                     cp = 0.01,
+                     maxdepth = 6)
+
+rpart.plot::rpart.plot(model)
+```
+
+## Prediction
+
+The trained model can then be used to predict the species of a new penguin.
+
+```{r}
+#| echo: true
+newdata <- data.frame(
+    island = "Biscoe",
+    bill_length_mm = 43,
+    bill_depth_mm = 17,
+    flipper_length_mm = 200,
+    body_mass_g = 4201,
+    sex = "female",
+    year = "2007")
+
+predict(model, newdata = newdata)
 ```
